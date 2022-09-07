@@ -29,7 +29,7 @@
     'host' => 'smtp.gmail.com',
     'username' => 'cacho.muckey@gmail.com',
     'password' => 'rfggeupqkztjuxiu',
-    'port' => '587'
+    'port' => '465'
   );
   
 
