@@ -1,18 +1,56 @@
 <?php
-if ( isset ($_POST['submit'])) {
-  $name = $_POST['name'];
-  $subject = $_POST ['subject'];
-  $mailFrom = $_POST ['mail'];
-  $message = $_POST ['message'];
-}
-  $mailTo = "cacho.muckey@gmail.com";
-  $headers = "From: ".$mailFrom;
-  $txt = "You have received an e-mail from " .$name.".\n\n".$message;
+    $error = false;
+    $sent = false;
 
-  mail($mailTo, $subject, $txt, $headers );
-  header("Location: index.php?mailsend ");
+    if(isset($_POST['submit'])) {
+        if(empty($_POST['name']) || empty($_POST['email']) || empty($_POST['comments'])) {
+            $error = true;
+        }
+        else {
+            $to = "linardsberzins@gmail.com";
 
- 
+            $name = trim($_POST['name']);
+            $email = trim($_POST['email']);
+            $comments = trim($_POST['comments']);
+
+            $subject = "Contact Form";
+
+            $message =  "Name: $name \r\n Email: $email \r\n Comments: $comments";
+            $headers = "From:" . $name;
+            $mailsent = mail($to, $subject, $message, $headers);
+
+            if($mailsent) {
+                $sent = true;
+            }
+        }
+    }
+?>
+
+<?php if($error == true){ ?>
+<p class="error">Text</p>
+<?php } if($sent == true) { ?>
+<p class="sent">Text</p>
+<?php } ?>
+<div id="form">
+    <form name="contact" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <fieldset>
+            <h4>Contact Me!</h4>
+            <label for="name">Name:</label>
+                <input type="text" name="name" id="name"/>
+                <label for="email"/>Email:</label>
+                <input type="text" name="email" id="email"/>
+                <label for="comments" id="comments">Comments:</label>
+                <textarea name="comments" id=""></textarea>
+                <fieldset>
+                <input class="btn" type="submit" name="submit"  class="submit" value="Send email"/>
+                <input class="btn" type="reset" value="Reset"/>
+                </fieldset>
+        </fieldset>
+    </form>
+</div>
+
+
+
 
   // Replace contact@example.com with your real receiving email address
   // $receiving_email_address = 'contact@example.com';
