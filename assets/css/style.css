@@ -1227,9 +1227,9 @@ section {
 :root {
   /* --color-text: navy; */
   /* --color-bg: rgb(252, 252, 252); */
-  --color-bg-accent: #ffffff;
+  --color-bg-accent: #90e1ef59;
   --size: clamp(10rem, 1rem + 30vmin, 30rem);
-  --gap: calc(var(--size) / 14);
+  --gap: calc(var(--size) / 15);
   --duration: 60s;
   --scroll-start: 0;
   --scroll-end: calc(-100% - var(--gap));
